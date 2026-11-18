@@ -1,0 +1,40 @@
+name: ETF 迁移构建与品牌验收
+on:
+  push:
+    paths:
+      - 'etf/**'
+      - 'tools/check_brand.py'
+      - '.github/workflows/etf-ci.yml'
+  pull_request:
+    paths:
+      - 'etf/**'
+      - 'tools/check_brand.py'
+      - '.github/workflows/etf-ci.yml'
+  workflow_dispatch:
+jobs:
+  etf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: etf/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 品牌检查
+        run: python tools/check_brand.py
+      - name: 安装依赖
+        working-directory: etf
+        run: npm ci
+      - name: 执行原版测试
+        working-directory: etf
+        run: npm test
+      - name: 构建 ETF 演示看板
+        working-directory: etf
+        run: npm run build
+      - name: 验证构建产物
+        working-directory: etf
+        run: npm run validate
