@@ -13,7 +13,7 @@ let seed;
 try { seed = validateSeed(JSON.parse(await readFile(file, 'utf8')), mode); }
 catch (error) { throw new Error('Cannot build ' + mode + ' data. See docs/data.md. ' + error.message); }
 const assets = {};
-for (const [path, type] of [['index.html','text/html'],['style.css','text/css'],['echarts.min.js','text/javascript'],['assets/flow-math.js','text/javascript'],['assets/radar-math.js','text/javascript'],['assets/radar.js','text/javascript'],['assets/dashboard.js','text/javascript'],['assets/presentation.js','text/javascript'],['assets/brush.js','text/javascript'],['assets/ftai-mark.svg','image/svg+xml']]) {
+for (const [path, type] of [['index.html','text/html'],['style.css','text/css'],['echarts.min.js','text/javascript'],['assets/flow-math.js','text/javascript'],['assets/radar-math.js','text/javascript'],['assets/radar.js','text/javascript'],['assets/dashboard.js','text/javascript'],['assets/presentation.js','text/javascript'],['assets/brush.js','text/javascript'],['assets/quantpilot-mark.svg','image/svg+xml']]) {
   let body = await readFile(resolve(root, 'src', path), 'utf8');
   if (path === 'index.html') body = body.replace('data-data-mode="demo"', 'data-data-mode="' + mode + '"');
   if (path === 'index.html') body = body.replace('data-radar="off"', 'data-radar="' + (process.env.ENABLE_RADAR === '1' ? 'on' : 'off') + '"');
