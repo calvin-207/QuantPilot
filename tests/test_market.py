@@ -99,13 +99,13 @@ def test_csv_import_validation_and_atomicity(tmp_path):
     from tools.import_market_csv import load_csv
     path = tmp_path / "bars.csv"
     path.write_text(
-        "symbol,timeframe,ts,open,high,low,close,volume,turnover,source,revision\\n"
-        "600519.SH,1m,2026-11-17T09:31:00+08:00,10,11,9,10.5,100,1050,sample,v1\\n",
+        "symbol,timeframe,ts,open,high,low,close,volume,turnover,source,revision\n"
+        "600519.SH,1m,2026-11-17T09:31:00+08:00,10,11,9,10.5,100,1050,sample,v1\n",
         encoding="utf-8"
     )
     rows = load_csv(path)
     assert len(rows) == 1 and rows[0].source == "sample"
-    path.write_text(path.read_text(encoding="utf-8") + "600519.SH,1m,2026-11-17T09:31:00+08:00,10,11,9,10.5,100,1050,sample,v1\\n", encoding="utf-8")
+    path.write_text(path.read_text(encoding="utf-8") + "600519.SH,1m,2026-11-17T09:31:00+08:00,10,11,9,10.5,100,1050,sample,v1\n", encoding="utf-8")
     with pytest.raises(ValueError, match="重复"):
         load_csv(path)
 
