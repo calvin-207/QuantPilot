@@ -94,3 +94,26 @@ def test_api_reads_local_data(tmp_path, monkeypatch):
     res = client.get("/api/v1/market/bars",params={"symbol":"600519.SH","timeframe":"1m","start":start,"end":end,"source":"sample"})
     assert res.status_code == 200 and len(res.json()["items"]) == 1
     assert client.get("/api/v1/market/bars",params={"symbol":"600519.SH","timeframe":"1m","start":"2026-11-17T09:30:00","end":end}).status_code == 422
+
+def test_csv_import_validation_and_atomicity(tmp_path):
+    from tools.import_market_csv import load_csv
+    path = tmp_path / "bars.csv"
+    path.write_text(
+        "symbol,timeframe,ts,open,high,low,close,volume,turnover,source,revision\\n"
+        "600519.SH,1m,2026-11-17T09:31:00+08:00,10,11,9,10.5,100,1050,sample,v1\\n",
+        encoding="utf-8"
+    )
+    rows = load_csv(path)
+    assert len(rows) == 1 and rows[0].source == "sample"
+    path.write_text(path.read_text(encoding="utf-8") + "600519.SH,1m,2026-11-17T09:31:00+08:00,10,11,9,10.5,100,1050,sample,v1\\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="重复"):
+        load_csv(path)
+
+def test_market_api_does_not_create_missing_db(tmp_path, monkeypatch):
+    from fastapi.testclient import TestClient
+    from backend.app.main import app
+    db = tmp_path / "not-created.db"
+    monkeypatch.setenv("QUANTPILOT_MARKET_DB", str(db))
+    response = TestClient(app).get("/api/v1/market/instruments")
+    assert response.status_code == 503
+    assert not db.exists()
