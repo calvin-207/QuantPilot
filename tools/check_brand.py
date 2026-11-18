@@ -16,7 +16,7 @@ PATTERNS = tuple(re.compile(p, re.I) for p in (
     r"FtShare\s*[·|]\s*ETF",
     r"ftshare-theme",
 ))
-UI_DIRS = (ROOT / "src", ROOT / "frontend")
+UI_DIRS = (ROOT / "src", ROOT / "frontend", ROOT / "etf" / "src")
 issues = []
 for folder in UI_DIRS:
     if not folder.exists():
@@ -30,7 +30,7 @@ for folder in UI_DIRS:
         for pattern in PATTERNS:
             if pattern.search(text):
                 issues.append(f"{p.relative_to(ROOT)}: {pattern.pattern}")
-if not (ROOT / "src/index.html").exists() and not (ROOT / "frontend").exists():
+if not (ROOT / "src/index.html").exists() and not (ROOT / "frontend").exists() and not (ROOT / "etf/src/index.html").exists():
     print("NOT READY: upstream user interface not imported")
     sys.exit(2)
 if issues:
