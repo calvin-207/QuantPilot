@@ -17,6 +17,14 @@
 - **历史回测与绩效**：按历史时点重建股票池，模拟 A 股交易约束、手续费和调仓，输出收益、回撤与基准比较。
 - **自动化研究**：定时更新行情、执行选股任务、归档结果并生成报告。
 
+### P2：统一行情数据中心（首批实现）
+
+新增 `quant_core/market/`：股票、ETF、指数统一行情数据模型，15/60 分钟聚合、本地 SQLite 行情存储、数据校验和可插拔行情 Provider；新增 `/api/v1/market/instruments` 与 `/api/v1/market/bars` 查询接口。
+
+支持通过 `tools/import_market_csv.py` 导入**已有合法来源**的历史 K 线。FtShare 历史日线采用注入式适配，真实密钥、权限与分钟数据仍需联调，不会将模拟数据作为真实行情发布。
+
+[查看 P2 中文操作文档](docs/P2_MARKET_DATA.md)。
+
 ### 已实现
 
 - `quant_core/selection.py`：独立于 Web 框架的确定性多因子排名基础函数。
@@ -86,6 +94,12 @@ uvicorn backend.app.main:app --reload
 - Configurable technical-rule screening and multi-factor ranking.
 - Strategy signals, versioning and scheduled selection.
 - Point-in-time historical replay, A-share-aware backtests and performance reports.
+
+### P2 market-data foundation
+
+Includes common A-share stock/ETF/index bar models, 15/60-minute aggregation, SQLite persistence, data validation, read-only FastAPI endpoints, and CSV import of authorized datasets. Live FtShare entitlement and minute-history integration are not yet complete.
+
+See [P2 market-data documentation](docs/P2_MARKET_DATA.md).
 
 ### Implemented so far
 
