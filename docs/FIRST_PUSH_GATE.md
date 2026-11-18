@@ -12,4 +12,4 @@ Never import an unchanged upstream page and promise to rebrand later.
 7. Run python tools/check_brand.py, npm test, npm run build, pytest and inspect rendered UI.
 8. Do not merge the upstream UI until all gates pass.
 
-The initial API + quant_core scaffold does **not** import the upstream UI and is not evidence that UI migration has been completed.
+The ETF browser UI has now been imported under `etf/src/`, with the user-visible logo and promotional entry replaced before its first commit. This document remains the acceptance checklist for future UI changes.
