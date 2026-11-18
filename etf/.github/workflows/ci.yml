@@ -1,0 +1,12 @@
+name: ETF 原版测试（本文件作为迁移参考，不会在子目录自动触发）
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci && npm test && npm run build && npm run validate
