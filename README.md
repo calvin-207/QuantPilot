@@ -6,7 +6,7 @@
 
 **QuantPilot（量化领航）** 是面向 A 股市场的开源量化研究平台，目标是建立从行情观察、技术指标与多因子自动选股、策略信号、历史回测到组合绩效分析的完整研究闭环。
 
-> **当前阶段：工程基础骨架。** 已有基础选股计算模块、FastAPI 健康检查及单元测试。**尚未**接入真实行情、迁移原 ETF 可视化页面、实现完整历史回测或连接券商交易。请勿将项目现阶段结果视为可执行投资建议。
+> **当前阶段：工程基础骨架。** 已有基础选股计算模块、FastAPI 健康检查及单元测试。**已将 ETF 资金观察、异动雷达、前端界面与演示数据迁入 `etf/` 子目录**，并完成 QuantPilot 品牌替换。真实行情仍需合法数据权限和密钥；**尚未**实现完整历史回测或连接券商交易。请勿将项目现阶段结果视为可执行投资建议。
 
 ### 规划功能
 
@@ -23,9 +23,25 @@
 - `backend/app/main.py`：FastAPI 应用与 `GET /health` 接口。
 - `tests/test_selection.py`：基础选股单元测试。
 - `.github/workflows/python.yml`：Python 测试工作流。
-- `tools/check_brand.py`：首次迁移上游 ETF 界面时检查已知旧品牌和推广入口。
+- `etf/`：已迁移 ETF 资金观察、成交异动雷达、原生前端、演示数据、采集脚本和回归测试。
+- `tools/check_brand.py`：检查 ETF 页面已知旧品牌和推广入口。
+- `.github/workflows/etf-ci.yml`：ETF 品牌检查、原回归测试与构建验收。
 
-### 本地快速启动
+### ETF 资金观察模块（演示模式）
+
+要求 Node.js 24+：
+
+```bash
+cd etf
+npm ci
+npm run build
+npm test
+npm start
+```
+
+默认访问 `http://127.0.0.1:8080`；启用雷达需设置 `ENABLE_RADAR=1` 并重新构建。演示数据均为合成数据，真实行情需通过独立配置的数据服务采集。
+
+### Python 量化核心快速启动
 
 要求 Python 3.11 或以上：
 
@@ -40,7 +56,7 @@ uvicorn backend.app.main:app --reload
 ### 开发计划
 
 1. 核实行情供应商接口权限、数据覆盖和使用成本。
-2. 完成上游 ETF 界面的 **QuantPilot 品牌替换后再导入仓库**。
+2. ✅ 迁移上游 ETF 界面并在进入仓库前更换 QuantPilot 品牌；持续进行构建与回归验证。
 3. 建设历史时点证券池、因子注册中心与技术指标 / 多因子统一选股。
 4. 增加选股任务、信号归档、历史回放与 A 股交易规则回测。
 5. 完善研究前端、绩效报告、定时任务和部署测试。
@@ -61,7 +77,7 @@ uvicorn backend.app.main:app --reload
 
 **QuantPilot** is an open-source quantitative research platform for A-share market monitoring, technical and multi-factor stock selection, strategy signals, historical backtesting, and portfolio analytics.
 
-> **Status: early engineering scaffold.** The current repository includes a minimal deterministic factor ranking core, FastAPI health endpoint, and unit tests. It does **not** yet include a live market-data feed, the upstream ETF user interface, a complete backtesting engine, or brokerage execution.
+> **Status: early engineering scaffold.** The current repository includes a minimal deterministic factor ranking core, FastAPI health endpoint, and unit tests. The upstream ETF observatory, including its rebranded user interface and synthetic demonstration data, is now under `etf/`. It does **not** yet include a configured live market-data feed, a complete backtesting engine, or brokerage execution.
 
 ### Planned features
 
@@ -78,8 +94,21 @@ uvicorn backend.app.main:app --reload
 - `tests/test_selection.py`: unit tests.
 - `.github/workflows/python.yml`: Python CI.
 - `tools/check_brand.py`: known upstream promotional UI pattern gate.
+- `etf/`: migrated ETF observatory, radar, dashboard, collectors, synthetic fixtures and tests.
 
-### Quick start
+### ETF demo
+
+Node.js 24+:
+
+```bash
+cd etf
+npm ci
+npm run build
+npm test
+npm start
+```
+
+### Python core quick start
 
 Python 3.11+:
 
