@@ -11,9 +11,10 @@ await mkdir(directory, { recursive: true });
 const version = spawnSync('tar', ['--version'], { encoding: 'utf8' });
 if (version.status !== 0) throw new Error('A compatible tar command is required to create the source archive');
 // Normalize file ownership so release metadata contains only the project files.
-const ownership = /bsdtar|libarchive/i.test(version.stdout)
+const bsdtar = /bsdtar|libarchive/i.test(version.stdout);
+const ownership = bsdtar
   ? ['--uid=0', '--gid=0', '--uname=root', '--gname=root']
-  : ['--owner=0', '--group=0', '--numeric-owner'];
+  : ['--owner=0', '--group=0', '--numeric-owner', '--force-local']; // GNU tar reads "C:\..." as host:path without --force-local
 const result = spawnSync('tar', [...ownership, '-czf', archive, '-T', '-'], { cwd: root, input: files.join('\n') + '\n', encoding: 'utf8', env: { ...process.env, COPYFILE_DISABLE: '1' } });
 if (result.status !== 0) throw new Error('Source archive failed: ' + (result.stderr || result.error));
 const hash = createHash('sha256').update(await readFile(archive)).digest('hex');
