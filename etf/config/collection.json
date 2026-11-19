@@ -1,6 +1,6 @@
 {
-  "flow_start": "2022-01-01",
-  "market_start": "2023-10-09",
-  "minute_days": 20,
+  "flow_start": "2026-08-01",
+  "market_start": "2026-09-01",
+  "minute_days": 5,
   "concurrency": 2
 }
