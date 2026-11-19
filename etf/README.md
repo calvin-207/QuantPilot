@@ -1,9 +1,5 @@
 # QuantPilot · ETF 资金观察子系统
 
-本目录是从 [FtShare_fincase](https://github.com/FTShare-Lab/FtShare_fincase) 迁移而来的 ETF 资金与成交观察模块。原作者 MIT 版权及许可文本保留在本目录 [LICENSE](LICENSE)；ECharts 的 Apache-2.0 授权见 [third_party/echarts](third_party/echarts)。
-
-**品牌**：页面标题、Logo、推广入口已替换为 QuantPilot。实际行情供应商若为 FtShare，数据来源说明应真实显示 FtShare，不属于产品品牌推广。
-
 ## 功能
 
 - ETF 成交异动雷达（20/60 日同进度成交比较）
