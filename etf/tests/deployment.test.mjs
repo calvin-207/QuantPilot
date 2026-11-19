@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, cp, mkdir, readFile, writeFile, readlink, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { refreshDeployment } from '../scripts/lib/deployment.mjs';
 import { recentCollection } from '../scripts/lib/recent-collection.mjs';
@@ -11,7 +11,7 @@ import { macJobs, plist } from '../scripts/lib/macos.mjs';
 
 const source = fileURLToPath(new URL('../', import.meta.url));
 async function fixture(t) {
-  const root = await mkdtemp(resolve(tmpdir(), 'ftshare-deploy-'));
+  const root = await mkdtemp(resolve(tmpdir(), 'quantpilot-deploy-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   for (const path of ['src', 'scripts', 'data/demo-seed.json', 'package.json', 'LICENSE', 'third_party']) {
     await mkdir(resolve(root, path, '..'), { recursive: true });
@@ -62,7 +62,7 @@ test('upstream collection failure leaves both the running build and historical s
   assert.equal(await readlink(resolve(root, '.local/current')), prior);
   assert.equal(await readFile(resolve(root, 'data/private/seed.json'), 'utf8'), data);
   const artifact = resolve(root, '.local/current/server/index.js');
-  const worker = (await import('file://' + artifact)).default;
+  const worker = (await import(pathToFileURL(artifact).href)).default;
   assert.equal((await worker.fetch(new Request('http://localhost/'))).status, 200);
   assert.equal((await worker.fetch(new Request('http://localhost/assets/quantpilot-mark.svg'))).status, 200);
 });

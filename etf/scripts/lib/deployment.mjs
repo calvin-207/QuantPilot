@@ -13,7 +13,16 @@ async function optionalJSON(path) {
 async function replaceLink(path, target) {
   const pending = path + '.' + randomUUID();
   await symlink(target, pending, 'dir');
-  try { await rename(pending, path); } finally { await rm(pending, { force: true }); }
+  try {
+    try { await rename(pending, path); }
+    catch (error) {
+      // POSIX rename atomically replaces an existing symlink; Windows cannot replace an existing
+      // directory link, so fall back to removing it first (brief gap, Windows dev machines only).
+      if (process.platform !== 'win32') throw error;
+      await rm(path, { force: true, recursive: true });
+      await rename(pending, path);
+    }
+  } finally { await rm(pending, { force: true }); }
 }
 export async function probeServer(port, expected, attempts = 25) {
   for (let n = 0; n < attempts; n++) {

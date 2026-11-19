@@ -1,12 +1,12 @@
 import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validateSeed } from './lib/seed.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const mode = process.env.DATA_MODE || 'demo';
 const output = resolve(root, process.env.BUILD_OUTPUT_DIR || 'dist');
-if (output !== resolve(root, 'dist') && !output.startsWith(resolve(root, '.local/releases') + '/')) throw new Error('Build output must be dist or inside .local/releases');
+if (output !== resolve(root, 'dist') && !output.startsWith(resolve(root, '.local/releases') + sep)) throw new Error('Build output must be dist or inside .local/releases');
 if (!['demo', 'live'].includes(mode)) throw new Error('DATA_MODE must be demo or live');
 const file = mode === 'demo' ? resolve(root, 'data/demo-seed.json') : resolve(root, process.env.FTSHARE_SEED_FILE || 'data/private/seed.json');
 let seed;

@@ -6,6 +6,7 @@ import { mkdtemp, mkdir, writeFile, readFile, copyFile, rm } from 'node:fs/promi
 import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { execFileSync } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
 
 const url = 'https://market.ft.tech/gateway/mcp';
 test('request limits reset, release concurrency once and bound client storage', () => {
@@ -52,7 +53,7 @@ test('429 responses stop immediate upstream retries and other fetch destinations
 });
 
 test('Mac check reports network observations without printing credentials or claiming inbound success', { timeout: 20000 }, async t => {
-  const root = await mkdtemp(resolve(tmpdir(), 'ftshare-network-check-'));
+  const root = await mkdtemp(resolve(tmpdir(), 'quantpilot-network-check-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   await mkdir(resolve(root, 'scripts'));
   await copyFile(new URL('../scripts/mac-check.mjs', import.meta.url), resolve(root, 'scripts/mac-check.mjs'));
@@ -64,7 +65,7 @@ test('Mac check reports network observations without printing credentials or cla
     if (input === 'https://api6.ipify.org') return new Response('2001:db8::42');
     throw new Error('No network in test');
   };`);
-  const output = execFileSync(process.execPath, ['--import', preload, 'scripts/mac-check.mjs'], {
+  const output = execFileSync(process.execPath, ['--import', pathToFileURL(preload).href, 'scripts/mac-check.mjs'], {
     cwd: root, encoding: 'utf8', timeout: 15000,
     env: { ...process.env, FTSHARE_API_KEY: key, FTSHARE_API_KEY_FILE: 'local-secret.txt', HTTPS_PROXY: 'http://synthetic-user:proxy-password@example.invalid' }
   });
@@ -72,5 +73,6 @@ test('Mac check reports network observations without printing credentials or cla
   const report = JSON.parse(await readFile(resolve(root, '.local/macmini-check.json'), 'utf8'));
   assert.equal(report.egress_ipv4, '192.0.2.42');
   assert.match(report.public_inbound_access, /Not tested/);
-  assert.equal(report.key_file.restrictive_permissions, true);
+  // POSIX permission bits do not map to Windows stat modes; the restrictive-permission check stays POSIX-only.
+  if (process.platform !== 'win32') assert.equal(report.key_file.restrictive_permissions, true);
 });

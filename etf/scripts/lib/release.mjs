@@ -1,6 +1,6 @@
 import { readdir, lstat, readFile } from 'node:fs/promises';
 import { resolve, relative } from 'node:path';
-export const releaseRoots = ['src', 'scripts', 'tests', 'config', 'docs', 'third_party', '.github', 'data/demo-seed.json', 'README.md', 'CHANGELOG.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'CONTRIBUTING.md', 'SECURITY.md', '.gitignore', '.dockerignore', '.env.example', '.dev.vars.example', 'Dockerfile', 'compose.yaml', 'wrangler.jsonc', 'package.json', 'package-lock.json'];
+export const releaseRoots = ['src', 'scripts', 'tests', 'config', 'docs', 'third_party', '.github', 'data/demo-seed.json', 'README.md', 'LICENSE', '.gitignore', '.dockerignore', '.env.example', 'Dockerfile', 'compose.yaml', 'wrangler.jsonc', 'package.json', 'package-lock.json'];
 export async function releaseFiles(root) {
   const files = [];
   async function walk(path) {

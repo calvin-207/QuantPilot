@@ -3,7 +3,7 @@ WORKDIR /app
 ENV NODE_ENV=production HOST=0.0.0.0 PORT=8080
 # Build on the host first. No source dataset, .env or provider key enters this context.
 COPY --chown=node:node package.json ./
-COPY --chown=node:node LICENSE THIRD_PARTY_NOTICES.md ./
+COPY --chown=node:node LICENSE ./
 COPY --chown=node:node third_party/ ./third_party/
 COPY --chown=node:node scripts/serve.mjs ./scripts/serve.mjs
 COPY --chown=node:node scripts/lib/key.mjs ./scripts/lib/key.mjs

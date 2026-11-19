@@ -39,4 +39,4 @@ curl --noproxy '*' --connect-timeout 5 --max-time 15 \
 
 保持系统、Node与代理软件更新；监控缓存时间、采集失败、磁盘和证书有效期。Mac登录任务在用户登录后运行，主机保持供电、联网与唤醒。
 
-[Mac部署](macmini.md) · [云端配置](cloud-scheduled-update.md) · [安全说明](../SECURITY.md)
+[Mac部署](macmini.md) · [云端配置](cloud-scheduled-update.md)
