@@ -1,0 +1,13 @@
+{
+  "$comment": "合成样本，非真实行情。核心ETF当日日K，供实时表格（价格/成交额/涨跌幅）回放。",
+  "tool": "ft_v4_stock_realtime_day_kline",
+  "synthetic": true,
+  "arguments": { "symbols": ["510300.SH", "510500.SH"] },
+  "response": {
+    "metadata": { "truncated": false },
+    "data": [
+      { "symbol": "510300.SH", "ts_millis": 1772175600000, "open": 1.1, "high": 1.15, "low": 1.09, "close": 1.14, "volume": 1510000, "turnover": 1680000.0 },
+      { "symbol": "510500.SH", "ts_millis": 1772175600000, "open": 6.2, "high": 6.4, "low": 6.18, "close": 6.35, "volume": 990000, "turnover": 6230000.0 }
+    ]
+  }
+}

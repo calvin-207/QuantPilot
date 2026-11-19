@@ -1,0 +1,17 @@
+{
+  "$comment": "合成样本，非真实行情。核心ETF实时分钟K，供分钟成交图与雷达回放。ts_millis 为样本日（2026-02-27）上午开盘后前三分钟的北京时间。",
+  "tool": "ft_v4_stock_realtime_minute_kline",
+  "synthetic": true,
+  "arguments": { "symbols": ["510300.SH", "510500.SH"] },
+  "response": {
+    "metadata": { "truncated": false },
+    "data": [
+      { "symbol": "510300.SH", "ts_millis": 1772155860000, "close": 1.101, "turnover": 1230000.0 },
+      { "symbol": "510300.SH", "ts_millis": 1772155920000, "close": 1.103, "turnover": 980000.0 },
+      { "symbol": "510300.SH", "ts_millis": 1772155980000, "close": 1.102, "turnover": 1100000.0 },
+      { "symbol": "510500.SH", "ts_millis": 1772155860000, "close": 6.21, "turnover": 2100000.0 },
+      { "symbol": "510500.SH", "ts_millis": 1772155920000, "close": 6.22, "turnover": 1850000.0 },
+      { "symbol": "510500.SH", "ts_millis": 1772155980000, "close": 6.24, "turnover": 1990000.0 }
+    ]
+  }
+}

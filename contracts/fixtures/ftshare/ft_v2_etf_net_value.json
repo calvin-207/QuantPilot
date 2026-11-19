@@ -1,0 +1,19 @@
+{
+  "$comment": "合成样本，非真实数据。ETF净值记录，供净申赎估算与份额折算核验回放。adjustment_factor 供 splits 事件核对；publish_date 可缺失。",
+  "tool": "ft_v2_etf_net_value",
+  "synthetic": true,
+  "arguments": {
+    "etf_code": "510300.SH",
+    "start_date": 20260225,
+    "end_date": 20260227,
+    "page": 1,
+    "page_size": 200
+  },
+  "response": {
+    "metadata": { "truncated": false, "pagination": { "has_more": false } },
+    "data": [
+      { "nav_date": "2026-02-26", "unit_nav": 1.08, "publish_date": "2026-02-26", "adjustment_factor": 1.0 },
+      { "nav_date": "2026-02-27", "unit_nav": 1.14, "publish_date": "2026-02-27", "adjustment_factor": 1.0 }
+    ]
+  }
+}

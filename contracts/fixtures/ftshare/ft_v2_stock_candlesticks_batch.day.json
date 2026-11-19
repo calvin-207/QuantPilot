@@ -1,0 +1,21 @@
+{
+  "$comment": "合成样本，非真实行情。日期落在 demo 快照日历内。行形状对齐 etf/src/server/ftshare.js 的 structuredContent 解析与 quant_core/market/ftshare.py 的字段要求。ts_millis 为K线结束时刻（北京时间15:00）。",
+  "tool": "ft_v2_stock_candlesticks_batch",
+  "synthetic": true,
+  "arguments": {
+    "symbols": ["510300.SH"],
+    "interval_unit": "Day",
+    "adjust_kind": "none",
+    "since_ts_millis": 1771948800000,
+    "until_ts_millis": 1772207999000,
+    "limit": 1000
+  },
+  "response": {
+    "metadata": { "truncated": false },
+    "data": [
+      { "symbol": "510300.SH", "ts_millis": 1772002800000, "open": 1.05, "high": 1.1, "low": 1.02, "close": 1.08, "volume": 1230000, "turnover": 1300000.0 },
+      { "symbol": "510300.SH", "ts_millis": 1772089200000, "open": 1.08, "high": 1.12, "low": 1.06, "close": 1.1, "volume": 980000, "turnover": 1050000.0 },
+      { "symbol": "510300.SH", "ts_millis": 1772175600000, "open": 1.1, "high": 1.15, "low": 1.09, "close": 1.14, "volume": 1510000, "turnover": 1680000.0 }
+    ]
+  }
+}

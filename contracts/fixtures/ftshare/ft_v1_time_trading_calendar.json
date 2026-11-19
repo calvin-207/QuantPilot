@@ -1,0 +1,10 @@
+{
+  "$comment": "合成样本，非真实日历。A股交易日历，供份额记录日对齐与分钟日期窗口回放。data 取对象形态 {trade_dates:[...]}；service.js 亦接受数组包裹形态 [{trade_dates:[...]}]，回放器二选一即可。日期为 int 或 'YYYY-MM-DD' 字符串均可。",
+  "tool": "ft_v1_time_trading_calendar",
+  "synthetic": true,
+  "arguments": { "market": "cn", "start_date": 20260226, "end_date": 20260227 },
+  "response": {
+    "metadata": { "truncated": false },
+    "data": { "trade_dates": [20260226, 20260227] }
+  }
+}

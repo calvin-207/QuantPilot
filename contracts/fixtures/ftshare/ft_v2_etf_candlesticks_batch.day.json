@@ -1,0 +1,22 @@
+{
+  "$comment": "合成样本，非真实行情。供历史成交额图与前收盘备用接口回放。",
+  "tool": "ft_v2_etf_candlesticks_batch",
+  "synthetic": true,
+  "arguments": {
+    "symbols": ["510300.SH", "510500.SH"],
+    "interval_unit": "Day",
+    "adjust_kind": "none",
+    "since_ts_millis": 1772089200000,
+    "until_ts_millis": 1772207999000,
+    "limit": 200
+  },
+  "response": {
+    "metadata": { "truncated": false },
+    "data": [
+      { "symbol": "510300.SH", "ts_millis": 1772089200000, "open": 1.08, "high": 1.12, "low": 1.06, "close": 1.1, "volume": 980000, "turnover": 1050000.0 },
+      { "symbol": "510300.SH", "ts_millis": 1772175600000, "open": 1.1, "high": 1.15, "low": 1.09, "close": 1.14, "volume": 1510000, "turnover": 1680000.0 },
+      { "symbol": "510500.SH", "ts_millis": 1772089200000, "open": 6.1, "high": 6.25, "low": 6.05, "close": 6.2, "volume": 820000, "turnover": 5010000.0 },
+      { "symbol": "510500.SH", "ts_millis": 1772175600000, "open": 6.2, "high": 6.4, "low": 6.18, "close": 6.35, "volume": 990000, "turnover": 6230000.0 }
+    ]
+  }
+}

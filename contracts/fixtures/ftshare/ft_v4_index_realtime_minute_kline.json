@@ -1,0 +1,14 @@
+{
+  "$comment": "合成样本，非真实行情。上证指数实时分钟K，供分钟图指数叠加与交易日推断回放。",
+  "tool": "ft_v4_index_realtime_minute_kline",
+  "synthetic": true,
+  "arguments": { "symbols": ["000001.SH"] },
+  "response": {
+    "metadata": { "truncated": false },
+    "data": [
+      { "symbol": "000001.SH", "ts_millis": 1772155860000, "close": 3211.0, "turnover": 1200000000.0 },
+      { "symbol": "000001.SH", "ts_millis": 1772155920000, "close": 3212.5, "turnover": 1150000000.0 },
+      { "symbol": "000001.SH", "ts_millis": 1772155980000, "close": 3211.75, "turnover": 1080000000.0 }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$comment": "合成样本，非真实数据。ETF份额记录，供净申赎估算回放。fund_share 单位为份；statistics_period='日' 为模型唯一消费口径。经 pages() 分页读取，故 metadata 带 pagination。",
+  "tool": "ft_v2_etf_share",
+  "synthetic": true,
+  "arguments": {
+    "etf_code": "510300.SH",
+    "stati_perd": "日",
+    "start_date": 20260225,
+    "end_date": 20260227,
+    "page": 1,
+    "page_size": 200
+  },
+  "response": {
+    "metadata": { "truncated": false, "pagination": { "has_more": false } },
+    "data": [
+      { "statistics_period": "日", "trade_date": "2026-02-26", "fund_share": 12300000000 },
+      { "statistics_period": "日", "trade_date": "2026-02-27", "fund_share": 12340000000 }
+    ]
+  }
+}

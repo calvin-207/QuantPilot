@@ -1,0 +1,21 @@
+{
+  "$comment": "合成样本，非真实行情。上证指数日K，供宽基净流入图叠加与指数前收盘回放。",
+  "tool": "ft_v1_index_candlesticks",
+  "synthetic": true,
+  "arguments": {
+    "symbol": "000001.SH",
+    "interval_unit": "Day",
+    "adjust_kind": "none",
+    "since_ts_millis": 1771948800000,
+    "until_ts_millis": 1772207999000,
+    "limit": 14
+  },
+  "response": {
+    "metadata": { "truncated": false },
+    "data": [
+      { "symbol": "000001.SH", "ts_millis": 1772002800000, "open": 3190.0, "high": 3215.5, "low": 3185.25, "close": 3200.0, "volume": 300000000, "turnover": 38000000000.0 },
+      { "symbol": "000001.SH", "ts_millis": 1772089200000, "open": 3200.0, "high": 3218.0, "low": 3195.5, "close": 3210.5, "volume": 290000000, "turnover": 36500000000.0 },
+      { "symbol": "000001.SH", "ts_millis": 1772175600000, "open": 3210.5, "high": 3230.75, "low": 3205.0, "close": 3225.25, "volume": 310000000, "turnover": 39500000000.0 }
+    ]
+  }
+}
