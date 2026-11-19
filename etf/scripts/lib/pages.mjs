@@ -23,6 +23,6 @@ export async function preparePages(root) {
   await writeFile(resolve(output, '_headers'), '/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: same-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n');
   // Disable Pages' implicit SPA fallback: private/unknown paths should be 404,
   // rather than returning the dashboard HTML with an HTTP 200 response.
-  await writeFile(resolve(output, '404.html'), '<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>页面不存在 · FtShare</title><body><h1>页面不存在</h1><a href="/">返回看板</a></body></html>');
+  await writeFile(resolve(output, '404.html'), '<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>页面不存在 · QuantPilot</title><body><h1>页面不存在</h1><a href="/">返回看板</a></body></html>');
   return { directory: output, mode: metadata.mode, source_date: metadata.source_date };
 }

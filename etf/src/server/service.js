@@ -8,7 +8,7 @@ export function createDataService(seed, { fetcher = fetch, now = () => Date.now(
     const hit=memory.get(key);if(hit&&hit.expires>now())return hit.value;
     if(inflight.has(key))return inflight.get(key);
     const promise=(async()=>{
-      const request=new Request('https://ftshare-cache.invalid/v1/'+encodeURIComponent(key));
+      const request=new Request('https://quantpilot-cache.invalid/v1/'+encodeURIComponent(key));
       if(persistentCache){try{const r=await persistentCache.match(request);if(r){const value=await r.json();memory.set(key,{value,expires:now()+Math.max(1000,ttl/2)});return value;}}catch{}}
       const value=await job();memory.set(key,{value,expires:now()+ttl});
       if(memory.size>80)memory.delete(memory.keys().next().value);

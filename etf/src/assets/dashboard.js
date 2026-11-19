@@ -188,8 +188,8 @@ function renderCloudStatus(){
 async function refresh(){
  if(loading)return;loading=true;
  try{
-  if(!seed.demo){const health=await get('/api/health');if(health.history_built_at!==seed.built_at){seed=await get('/api/board');save('ftshare-board-v1',seed);renderCloudStatus();renderDaily();for(const d of Object.keys(seed.minutes).sort().reverse())if(!$('cumDate').querySelector('option[value="'+d+'"]')){const op=document.createElement('option');op.value=d;op.textContent=d;$('cumDate').insertBefore(op,$('cumDate').options[1]||null);}}}
-  live=combineLive(await get('/api/live'),live);save('ftshare-last-live-v1',live);safely('当日记录',mergeLiveHistory);safely('实时图表',renderMinute);safely('日度图表',renderDaily);if(radar)safely('异动雷达',()=>radar.render(seed,live));
+  if(!seed.demo){const health=await get('/api/health');if(health.history_built_at!==seed.built_at){seed=await get('/api/board');save('quantpilot-board-v1',seed);renderCloudStatus();renderDaily();for(const d of Object.keys(seed.minutes).sort().reverse())if(!$('cumDate').querySelector('option[value="'+d+'"]')){const op=document.createElement('option');op.value=d;op.textContent=d;$('cumDate').insertBefore(op,$('cumDate').options[1]||null);}}}
+  live=combineLive(await get('/api/live'),live);save('quantpilot-last-live-v1',live);safely('当日记录',mergeLiveHistory);safely('实时图表',renderMinute);safely('日度图表',renderDaily);if(radar)safely('异动雷达',()=>radar.render(seed,live));
   if(live.cache?.last_error&&live.cache.last_error!=='partial_upstream')tag('tagUpdate','云端采集暂缓；行情保留至 '+live.date+' '+(live.last_complete_minute||'--'),'warn');
  }catch(e){tag('tagUpdate',live?'缓存读取暂缓；保留 '+live.date+' '+(live.last_complete_minute||'')+' 的成功数据':'后台行情尚未就绪；历史图表可继续查看','warn');}
  finally{loading=false;}
@@ -201,7 +201,7 @@ function tick(){
 }
 window.addEventListener('quantpilot:theme-change',()=>{if(!seed)return;safely('主题切换',renderDaily);if(live)safely('实时图表',renderMinute);safely('累计图表',renderCum);});
 try{
- try{seed=await get('/api/board');save('ftshare-board-v1',seed);}catch(error){seed=saved('ftshare-board-v1');if(!seed?.broad||!seed?.history)throw error;tag('tagUpdate','正在显示上次成功加载的历史数据','warn');}
+ try{seed=await get('/api/board');save('quantpilot-board-v1',seed);}catch(error){seed=saved('quantpilot-board-v1');if(!seed?.broad||!seed?.history)throw error;tag('tagUpdate','正在显示上次成功加载的历史数据','warn');}
  const sourceDescription=seed.demo?'演示数据：程序生成的行情与资金样本。':'数据服务：FtShare。净申赎估算按交易日期对齐，缺失日期及原因可展开查看。';
  document.querySelectorAll('footer').forEach(e=>e.textContent=sourceDescription);
  const sourceNote=document.querySelector('#sourcePolicy');if(sourceNote)sourceNote.textContent=seed.demo?'离线生成的固定样本，不调用FtShare；上方接口说明用于真实数据接入。':'行情由云端统一采集，访客只读取共享缓存；日度数据按后台计划归档，成员及分类使用配置快照。';
@@ -212,7 +212,7 @@ try{
  $('broadAll').addEventListener('click',()=>{broadResetZoom=true;broadSelection=null;renderBroad();});
  $('broadRecent').addEventListener('click',()=>{const b=seed.broad,ids=b.dates.map((d,i)=>i).filter(i=>b.dates[i]<=seed.latest_flow_date&&b.dates[i]>=$('broadStart').value&&b.dates[i]<=$('broadEnd').value);const range=cumulativeWindow(ids.map(i=>b.dates[i]),ids.map(i=>b.total[i])).lastCompleteRange;if(range){broadResetZoom=true;broadSelection=range;renderBroad();}});
  safely('历史图表',renderDaily);safely('累计成交图表',renderCum);
- const lastLive=saved('ftshare-last-live-v1');if(lastLive?.provider===(seed.demo?'Demo':'FTShare')&&lastLive?.slots?.length===seed.minute_slots.length){live=lastLive;safely('已保存行情',renderMinute);tag('tagUpdate','已保存行情 '+live.date+' '+(live.last_complete_minute||'')+'；正在更新','warn');}
+ const lastLive=saved('quantpilot-last-live-v1');if(lastLive?.provider===(seed.demo?'Demo':'FTShare')&&lastLive?.slots?.length===seed.minute_slots.length){live=lastLive;safely('已保存行情',renderMinute);tag('tagUpdate','已保存行情 '+live.date+' '+(live.last_complete_minute||'')+'；正在更新','warn');}
  const dates=Object.keys(seed.minutes).sort().reverse();for(const d of dates){const op=document.createElement('option');op.value=d;op.textContent=d;$('cumDate').appendChild(op);}picked=dates[0]||'';$('cumDate').value=picked;renderCum();
  $('cumDate').addEventListener('change',async()=>{picked=$('cumDate').value;if(picked&&!seed.minutes[picked]){try{seed.minutes[picked]=await get('/api/cumulative?date='+picked);}catch(e){tag('tagUpdate',e.message,'warn');}}renderCum();});
  window.addEventListener('resize',()=>Object.values(charts).forEach(c=>c.resize()));

@@ -2,7 +2,7 @@
 
 - 上游：https://github.com/FTShare-Lab/FtShare_fincase
 - 许可证：MIT
-- 上游原始版权声明：LICENSES/FTSHARE_FINCASE_LICENSE
+- 上游原始版权声明：仓库内不再保留副本；对外分发 `etf/` 衍生代码前，须按 MIT 要求附上上游原始版权与许可声明
 - 当前状态：ETF 观察站实现及其品牌化浏览器 UI 已导入 `etf/`。实时数据访问尚未配置。
 - 我们新增的原创代码使用顶层 QuantPilot MIT LICENSE。
 - 如导入上游代码的实质性部分，须保留原始版权/许可声明。

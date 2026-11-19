@@ -41,7 +41,7 @@ export function createFTShare(key, fetcher = fetch, { timeoutMs = 25000, onLimit
   }
   async function init() {
     if (!key) throw new FTShareError('FtShare密钥尚未配置', 'not_configured');
-    if (!ready) ready = (async () => { const r = await rpc('initialize', { protocolVersion: protocol, capabilities: {}, clientInfo: { name: 'ftshare-etf-dashboard', version: '1.0' } }); protocol = r.protocolVersion || protocol; await rpc('notifications/initialized', undefined, true); })().catch(e => { ready = null; throw e; });
+    if (!ready) ready = (async () => { const r = await rpc('initialize', { protocolVersion: protocol, capabilities: {}, clientInfo: { name: 'quantpilot-etf-dashboard', version: '1.0' } }); protocol = r.protocolVersion || protocol; await rpc('notifications/initialized', undefined, true); })().catch(e => { ready = null; throw e; });
     return ready;
   }
   return {

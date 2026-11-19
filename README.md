@@ -73,7 +73,7 @@ uvicorn backend.app.main:app --reload
 
 ### 开源与数据声明
 
-本项目参考 [FtShare_fincase](https://github.com/FTShare-Lab/FtShare_fincase)（MIT 许可）。上游原始版权与许可声明保留于 [LICENSES/FTSHARE_FINCASE_LICENSE](LICENSES/FTSHARE_FINCASE_LICENSE)；QuantPilot 新增原创代码使用仓库根目录的 [MIT LICENSE](LICENSE)。如引入 ECharts 分发文件，还须保留其 Apache-2.0 许可及 NOTICE。
+本项目参考 [FtShare_fincase](https://github.com/FTShare-Lab/FtShare_fincase)（MIT 许可），`etf/` 中的 ETF 观察站实现与浏览器 UI 源自该上游；对外分发其衍生代码时，须按 MIT 要求附上上游原始版权与许可声明。QuantPilot 新增原创代码使用仓库根目录的 [MIT LICENSE](LICENSE)。如引入 ECharts 分发文件，还须保留其 Apache-2.0 许可及 NOTICE。
 
 替换旧项目的 Logo、标题和商业推广内容，**不代表可以删除被复用代码所要求的版权声明**，也不等于获得 FtShare 数据服务、API 密钥或第三方行情数据的授权。详情见 [上游来源说明](docs/UPSTREAM.md)。
 
@@ -136,7 +136,7 @@ See the [architecture](docs/ARCHITECTURE.md), [Codex tasks](docs/CODEX_TASKS.md)
 
 ### Licenses and attribution
 
-QuantPilot references the MIT-licensed [FtShare_fincase](https://github.com/FTShare-Lab/FtShare_fincase). The original upstream MIT copyright notice is retained at [LICENSES/FTSHARE_FINCASE_LICENSE](LICENSES/FTSHARE_FINCASE_LICENSE); original QuantPilot code uses the repository's [MIT LICENSE](LICENSE). Imported third-party libraries require their own applicable notices.
+QuantPilot references the MIT-licensed [FtShare_fincase](https://github.com/FTShare-Lab/FtShare_fincase); the ETF dashboard under `etf/` derives from that upstream, and redistributing derived code requires the original MIT copyright and license notice. Original QuantPilot code uses the repository's [MIT LICENSE](LICENSE). Imported third-party libraries require their own applicable notices.
 
 Brand replacement does not waive copyright obligations or confer rights to hosted data services, API credentials, or external market datasets. See [upstream notes](docs/UPSTREAM.md).
 

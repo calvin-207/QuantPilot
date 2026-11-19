@@ -15,6 +15,11 @@ PATTERNS = tuple(re.compile(p, re.I) for p in (
     r"即刻体验\s*FtShare",
     r"FtShare\s*[·|]\s*ETF",
     r"ftshare-theme",
+    r"ftshare-etf-dashboard",
+    r"com\.ftshare\.",
+    r"ftshare-cache\.invalid",
+    r"ftshare-board-v",
+    r"ftshare-last-live",
 ))
 UI_DIRS = (ROOT / "src", ROOT / "frontend", ROOT / "etf" / "src")
 issues = []

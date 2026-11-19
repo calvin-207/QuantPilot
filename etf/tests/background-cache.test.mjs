@@ -59,9 +59,9 @@ test('all concurrent callers obey the same request spacing and cooldown', async 
 });
 test('the scheduled collector re-queries live minutes and only persists reusable reference responses', async () => {
   const store=kv(),cache=kvResponseCache(store,()=>time);
-  const live=new Request('https://ftshare-cache.invalid/v1/live-formula-date');
+  const live=new Request('https://quantpilot-cache.invalid/v1/live-formula-date');
   await cache.put(live,Response.json({old:true}));assert.equal(store.rows.size,0);assert.equal(await cache.match(live),undefined);
-  const prev=new Request('https://ftshare-cache.invalid/v1/previous-etf-date');
+  const prev=new Request('https://quantpilot-cache.invalid/v1/previous-etf-date');
   await cache.put(prev,Response.json({previous:123}));assert.equal((await(await cache.match(prev)).json()).previous,123);
 });
 test('shared edge cache normalizes force-query parameters without extra storage reads', async () => {

@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { preparePages } from '../scripts/lib/pages.mjs';
 
 test('Pages package separates client assets, server entrypoint and private deployment data', async t => {
-  const root = await mkdtemp(resolve(tmpdir(), 'ftshare-pages-'));
+  const root = await mkdtemp(resolve(tmpdir(), 'quantpilot-pages-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const source = fileURLToPath(new URL('../', import.meta.url));
   const files = ['src/index.html','src/style.css','src/echarts.min.js','src/assets/dashboard.js','src/assets/flow-math.js','src/assets/radar.js','src/assets/radar-math.js','src/assets/brush.js','src/assets/presentation.js','src/assets/quantpilot-mark.svg','LICENSE','third_party/echarts/LICENSE','third_party/echarts/NOTICE','third_party/echarts/licenses/LICENSE-d3'];

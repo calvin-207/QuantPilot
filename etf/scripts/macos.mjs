@@ -11,7 +11,7 @@ import { loadAPIKey } from './lib/key.mjs';
 const exec = promisify(execFile), root = fileURLToPath(new URL('../', import.meta.url));
 const action = process.argv[2] || 'help';
 const domain = 'gui/' + process.getuid?.(), local = resolve(root, '.local/macos');
-const labels = ['com.ftshare.etf-dashboard', 'com.ftshare.etf-dashboard.refresh'];
+const labels = ['com.quantpilot.etf-dashboard', 'com.quantpilot.etf-dashboard.refresh'];
 const agent = label => resolve(homedir(), 'Library/LaunchAgents', label + '.plist');
 try {
   if (!['install', 'status', 'uninstall'].includes(action)) {

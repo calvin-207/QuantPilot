@@ -38,7 +38,7 @@ export function githubArchive({ repository, token, fetcher = fetch }) {
   async function request(path, { method = 'GET', body, binary = false, upload = false, allow404 = false, type } = {}) {
     const response = await fetcher(path.startsWith('https://') ? path : 'https://api.github.com' + path, {
       method, headers: { authorization: 'Bearer ' + token, accept: binary ? 'application/octet-stream' : 'application/vnd.github+json',
-        'user-agent': 'ftshare-etf-cloud-archive', 'x-github-api-version': '2022-11-28',
+        'user-agent': 'quantpilot-etf-cloud-archive', 'x-github-api-version': '2022-11-28',
         ...(body ? { 'content-type': type || 'application/json' } : {}) },
       ...(body ? { body: upload ? body : JSON.stringify(body) } : {}), signal: AbortSignal.timeout(60000)
     });
