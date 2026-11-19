@@ -1,16 +1,16 @@
-# QuantPilot architecture
+# QuantPilot 架构
 
-Current implementation:
-- quant_core: framework-independent, deterministic cross-sectional factor selection
-- backend: FastAPI health endpoint
-- tests: pure selection unit tests
+当前实现：
+- quant_core：与框架无关、确定性的横截面因子选股
+- backend：FastAPI 健康检查接口
+- tests：纯选股单元测试
 
-Planned modules:
-- Market data provider adapters and versioned point-in-time storage
-- Technical indicators and multi-factor registry
-- A-share selection runs, strategy versions, schedule and signals
-- Event-driven backtest with T+1, suspension, price limits and transaction costs
-- Portfolio analytics and web UI
-- Optional upstream ETF observatory after first-import brand and license checks
+规划中的模块：
+- 行情数据供应商适配器与带版本管理的历史时点存储
+- 技术指标与多因子注册表
+- A股选股运行、策略版本、调度与信号
+- 事件驱动回测，支持 T+1、停牌、涨跌停与交易成本
+- 组合绩效分析与 Web UI
+- 完成首次导入的品牌与许可检查后，可选接入上游 ETF 观察站
 
-Research and historical backtesting must use the same selection implementation. Market data entitlements and historical completeness must be verified before real results are displayed.
+研究与历史回测必须使用同一套选股实现。在展示真实结果之前，必须先核验行情数据权限与历史数据完整性。

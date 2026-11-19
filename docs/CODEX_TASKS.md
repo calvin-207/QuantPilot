@@ -1,15 +1,15 @@
-# Codex task sequence
+# Codex 任务序列
 
-- TASK-01: baseline API, deterministic core, CI tests
-- TASK-02: FtShare provider entitlement verification, historical day/minute normalization
-- TASK-03: point-in-time universes, security master, historical status
-- TASK-04: technical indicators, factor registry, missing data and standardization
-- TASK-05: strategy versions, combined technical/multi-factor selector
-- TASK-06: selected-stock snapshots and task scheduling
-- TASK-07: A-share historical backtesting and simulated order execution
-- TASK-08: performance reports and comparisons
-- TASK-09: brand-safe upstream ETF UI import, front-end integration
-- TASK-10: end-to-end tests and packaging
+- TASK-01：基线 API、确定性核心、CI 测试
+- TASK-02：FtShare 供应商权限核验、历史日线/分钟线规范化
+- TASK-03：历史时点股票池、证券主数据、历史状态
+- TASK-04：技术指标、因子注册表、缺失数据处理与标准化
+- TASK-05：策略版本、技术面/多因子组合选股器
+- TASK-06：选股结果快照与任务调度
+- TASK-07：A股历史回测与模拟下单执行
+- TASK-08：绩效报告与对比
+- TASK-09：品牌安全的上游 ETF UI 导入、前端集成
+- TASK-10：端到端测试与打包
 
-The first upstream UI commit must pass docs/FIRST_PUSH_GATE.md.
-Each task requires tests, report of changed files, and explicit unresolved blockers.
+首次提交上游 UI 之前必须通过 docs/FIRST_PUSH_GATE.md 的检查。
+每个任务都要求附带测试、变更文件报告，并明确列出未解决的阻塞项。

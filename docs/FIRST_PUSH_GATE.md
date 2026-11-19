@@ -1,15 +1,15 @@
-# Upstream UI first-import gate
+# 上游 UI 首次导入门禁
 
-The first commit containing FtShare_fincase UI must already show **QuantPilot** branding.
-Never import an unchanged upstream page and promise to rebrand later.
+第一个包含 FtShare_fincase UI 的提交必须已经展示 **QuantPilot** 品牌。
+严禁导入未修改的上游页面并承诺之后再更换品牌。
 
-1. Pin and document the upstream source commit.
-2. Replace visible page title, logo, masthead, navigation, promotional banners and accessibility labels.
-3. Remove original vendor marketing links, but preserve truthful identification of FtShare as the actual market-data provider.
-4. Use QuantPilot-local browser storage keys and replace vendor-branded icons.
-5. Preserve the original upstream MIT copyright and license notice in LICENSES/FTSHARE_FINCASE_LICENSE; keep the independent ECharts Apache-2.0 NOTICE/LICENSE when vendoring ECharts.
-6. Keep test fixtures clearly labeled as simulated; do not distribute private production market-data exports or API keys.
-7. Run python tools/check_brand.py, npm test, npm run build, pytest and inspect rendered UI.
-8. Do not merge the upstream UI until all gates pass.
+1. 固定并记录上游源码的 commit。
+2. 替换所有可见的页面标题、Logo、页头、导航、推广横幅和无障碍标签。
+3. 移除原厂商的营销链接，但必须如实保留 FtShare 作为实际行情数据供应商的标识。
+4. 使用 QuantPilot 本地的浏览器存储键名，并替换带厂商品牌的图标。
+5. 在 LICENSES/FTSHARE_FINCASE_LICENSE 中保留上游原始 MIT 版权与许可声明；复制 ECharts 发行版时保留独立的 ECharts Apache-2.0 NOTICE/LICENSE。
+6. 测试夹具必须清晰标注为模拟数据；不得分发私有的生产行情导出数据或 API Key。
+7. 运行 python tools/check_brand.py、npm test、npm run build、pytest，并检查渲染后的 UI。
+8. 所有门禁通过之前不得合入上游 UI。
 
-The ETF browser UI has now been imported under `etf/src/`, with the user-visible logo and promotional entry replaced before its first commit. This document remains the acceptance checklist for future UI changes.
+ETF 浏览器 UI 现已导入 `etf/src/`，用户可见的 Logo 与推广入口在首次提交前已完成替换。本文档仍作为后续 UI 变更的验收清单。

@@ -1,11 +1,11 @@
-# Upstream source and license obligations
+# 上游源码与许可义务
 
-- Upstream: https://github.com/FTShare-Lab/FtShare_fincase
-- License: MIT
-- Original upstream copyright notice: LICENSES/FTSHARE_FINCASE_LICENSE
-- Current state: ETF observatory implementation and its branded browser UI were imported under `etf/`. Live data access remains unconfigured.
-- Our new original code uses the top-level QuantPilot MIT LICENSE.
-- If importing a substantial part of upstream code, preserve the original copyright/permission notice.
-- ECharts includes independent Apache-2.0 LICENSE and NOTICE when its bundled distribution is copied.
-- The software license does not grant rights to the FtShare data service, API keys, or third-party market datasets.
-- UI branding and vendor marketing may be removed/replaced; truthful data-provider and license attribution must remain.
+- 上游：https://github.com/FTShare-Lab/FtShare_fincase
+- 许可证：MIT
+- 上游原始版权声明：LICENSES/FTSHARE_FINCASE_LICENSE
+- 当前状态：ETF 观察站实现及其品牌化浏览器 UI 已导入 `etf/`。实时数据访问尚未配置。
+- 我们新增的原创代码使用顶层 QuantPilot MIT LICENSE。
+- 如导入上游代码的实质性部分，须保留原始版权/许可声明。
+- 复制 ECharts 捆绑发行版时，需附带独立的 Apache-2.0 LICENSE 与 NOTICE。
+- 软件许可证不授予 FtShare 数据服务、API Key 或第三方行情数据集的任何权利。
+- UI 品牌与厂商营销内容可以移除/替换；但必须如实保留数据供应商与许可署名。
