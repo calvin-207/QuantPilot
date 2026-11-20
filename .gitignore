@@ -12,3 +12,4 @@ build/
 .idea/
 .venv/
 *.egg-info/
+.workbuddy
